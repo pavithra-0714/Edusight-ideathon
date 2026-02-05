@@ -1,0 +1,287 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* EduSight Design System - Accessible, Calm, Eye-Friendly */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    /* Primary Colors - Pastel Lavender Theme */
+    --background: 300 47% 92%; /* #E9CFEA */
+    --foreground: 234 24% 22%; /* #2B2E44 */
+
+    --card: 300 40% 96%;
+    --card-foreground: 234 24% 22%;
+
+    --popover: 300 40% 96%;
+    --popover-foreground: 234 24% 22%;
+
+    --primary: 234 24% 22%; /* Dark Purple-Grey */
+    --primary-foreground: 300 47% 92%;
+
+    --secondary: 300 30% 85%;
+    --secondary-foreground: 234 24% 22%;
+
+    --muted: 300 20% 88%;
+    --muted-foreground: 234 15% 40%;
+
+    --accent: 199 78% 55%; /* Blue from logo */
+    --accent-foreground: 0 0% 100%;
+
+    --success: 152 52% 58%; /* Green from logo */
+    --success-foreground: 0 0% 100%;
+
+    --warning: 43 96% 56%; /* Yellow/Orange from logo */
+    --warning-foreground: 234 24% 22%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 300 20% 82%;
+    --input: 300 25% 88%;
+    --ring: 199 78% 55%;
+
+    --radius: 1rem;
+
+    /* Accessibility-focused sizes */
+    --font-size-base: 1.125rem; /* 18px */
+    --font-size-lg: 1.5rem; /* 24px */
+    --font-size-xl: 2rem; /* 32px */
+    --font-size-2xl: 2.5rem; /* 40px */
+    --font-size-3xl: 3rem; /* 48px */
+    
+    --button-min-height: 3.5rem; /* 56px - Large touch targets */
+    --button-min-width: 12rem;
+    
+    --spacing-safe: 1.5rem; /* Safe area padding */
+
+    /* Sidebar (if needed) */
+    --sidebar-background: 300 40% 96%;
+    --sidebar-foreground: 234 24% 22%;
+    --sidebar-primary: 234 24% 22%;
+    --sidebar-primary-foreground: 300 47% 92%;
+    --sidebar-accent: 300 30% 85%;
+    --sidebar-accent-foreground: 234 24% 22%;
+    --sidebar-border: 300 20% 82%;
+    --sidebar-ring: 199 78% 55%;
+  }
+
+  /* Color-blind friendly mode */
+  .colorblind-mode {
+    --accent: 199 90% 40%;
+    --success: 200 80% 45%;
+    --warning: 30 100% 50%;
+    --destructive: 0 0% 30%;
+  }
+
+  /* High contrast mode for visually impaired */
+  .high-contrast-mode {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 90%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 20%;
+    --border: 0 0% 0%;
+    --input: 0 0% 95%;
+    --ring: 0 0% 0%;
+    --font-size-base: 1.5rem;
+    --font-size-lg: 2rem;
+    --font-size-xl: 2.5rem;
+    --button-min-height: 4.5rem;
+  }
+
+  /* Grayscale mode */
+  .grayscale-mode {
+    filter: grayscale(100%);
+  }
+
+  .dark {
+    --background: 234 30% 12%;
+    --foreground: 300 30% 92%;
+    --card: 234 25% 16%;
+    --card-foreground: 300 30% 92%;
+    --popover: 234 25% 16%;
+    --popover-foreground: 300 30% 92%;
+    --primary: 300 40% 85%;
+    --primary-foreground: 234 30% 12%;
+    --secondary: 234 20% 22%;
+    --secondary-foreground: 300 30% 92%;
+    --muted: 234 20% 20%;
+    --muted-foreground: 300 15% 65%;
+    --accent: 199 78% 60%;
+    --accent-foreground: 234 30% 12%;
+    --border: 234 20% 25%;
+    --input: 234 20% 20%;
+    --ring: 199 78% 60%;
+    --sidebar-background: 234 25% 14%;
+    --sidebar-foreground: 300 30% 92%;
+    --sidebar-primary: 199 78% 60%;
+    --sidebar-primary-foreground: 234 30% 12%;
+    --sidebar-accent: 234 20% 20%;
+    --sidebar-accent-foreground: 300 30% 92%;
+    --sidebar-border: 234 20% 25%;
+    --sidebar-ring: 199 78% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-size: var(--font-size-base);
+  }
+
+  body {
+    @apply bg-background text-foreground font-nunito;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Ensure focus is always visible for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-4 ring-accent ring-offset-2 ring-offset-background;
+  }
+
+  /* Increase touch targets */
+  button, 
+  [role="button"],
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+  }
+}
+
+@layer components {
+  /* Large accessible button */
+  .btn-accessible {
+    @apply min-h-[3.5rem] min-w-[12rem] px-8 py-4 text-lg font-semibold rounded-2xl;
+    @apply transition-all duration-200 ease-in-out;
+    @apply focus:ring-4 focus:ring-accent focus:ring-offset-2;
+  }
+
+  /* Voice indicator animation */
+  .voice-pulse {
+    animation: voicePulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes voicePulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+
+  /* Gentle fade in animation */
+  .fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Speaking indicator */
+  .speaking-wave {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .speaking-wave span {
+    width: 4px;
+    height: 20px;
+    background-color: hsl(var(--accent));
+    border-radius: 2px;
+    animation: wave 1s ease-in-out infinite;
+  }
+
+  .speaking-wave span:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  .speaking-wave span:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+
+  .speaking-wave span:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+
+  @keyframes wave {
+    0%, 100% {
+      height: 8px;
+    }
+    50% {
+      height: 24px;
+    }
+  }
+
+  /* Screen reader only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
+
+@layer utilities {
+  /* Text sizes for accessibility */
+  .text-accessible-sm {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+  }
+
+  .text-accessible-base {
+    font-size: var(--font-size-lg);
+    line-height: 1.5;
+  }
+
+  .text-accessible-lg {
+    font-size: var(--font-size-xl);
+    line-height: 1.4;
+  }
+
+  .text-accessible-xl {
+    font-size: var(--font-size-2xl);
+    line-height: 1.3;
+  }
+
+  .text-accessible-2xl {
+    font-size: var(--font-size-3xl);
+    line-height: 1.2;
+  }
+
+  /* Safe area padding for mobile */
+  .safe-area {
+    padding: var(--spacing-safe);
+    padding-bottom: calc(var(--spacing-safe) + env(safe-area-inset-bottom, 0));
+  }
+}
